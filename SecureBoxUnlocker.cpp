@@ -124,7 +124,6 @@ bool isAllEqualOne(const std::vector<std::vector<bool>>& state)
     }
 
 }
-
 //================================================================================
 // Function: toggleBoxByMask
 // Description: receives the state of the box at the beginning and performs
@@ -161,13 +160,12 @@ void toggleByRowOrColum(uint32_t y , SecureBox& box , std::vector<std::vector<bo
     }
     else
     {
-        for (decltype(state.size()) colum = 0; colum < state.size(); ++colum)
+        for (decltype(state.size()) colum = 0; colum < state[0].size(); ++colum)
         {
             box.toggle(0, colum);   // performing a toggle for all colum values
         }
 
     }
-
 }
 //================================================================================
 // Function: openBox
@@ -180,7 +178,9 @@ void toggleByRowOrColum(uint32_t y , SecureBox& box , std::vector<std::vector<bo
 bool openBox(uint32_t y, uint32_t x)
 {
         SecureBox box(y, x);
+        int i, k = 0; 
 
+     
           while (box.isLocked())
           {
               if (isAllEqualOne(toggleBoxByMask(box.getState(), box)))
@@ -195,15 +195,15 @@ bool openBox(uint32_t y, uint32_t x)
 
 int main(int argc, char* argv[])
 {
-    uint32_t y = std::atol(argv[1]); 
-    uint32_t x = std::atol(argv[2]); 
-    bool state = openBox(y, x);
+            uint32_t y = std::atol(argv[1]); 
+            uint32_t x = std::atol(argv[2]); 
+            bool state = openBox(y, x);
 
-    if (state)
-        std::cout << "BOX: LOCKED!" << std::endl;
-    else
-        std::cout << "BOX: OPENED!" << std::endl;
+            if (state)
+                std::cout << "BOX: LOCKED!" << std::endl;
+            else
+                std::cout << "BOX: OPENED!" << std::endl;
 
-    return state;
+            return state;  
 }
 
