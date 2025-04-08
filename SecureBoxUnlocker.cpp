@@ -178,18 +178,16 @@ void toggleByRowOrColum(uint32_t y , SecureBox& box , std::vector<std::vector<bo
 bool openBox(uint32_t y, uint32_t x)
 {
         SecureBox box(y, x);
-        int i, k = 0; 
 
-     
-          while (box.isLocked())
-          {
-              if (isAllEqualOne(toggleBoxByMask(box.getState(), box)))
-              {
-                  toggleByRowOrColum(y, box, box.getState());
-              }
-          }
+        while (box.isLocked())
+        {
+            if (isAllEqualOne(toggleBoxByMask(box.getState(), box)))
+            {
+                toggleByRowOrColum(y, box, box.getState());
+            }
+        }
 
-    return box.isLocked();
+        return box.isLocked();
 }
 
 
